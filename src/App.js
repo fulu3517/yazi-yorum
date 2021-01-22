@@ -1,23 +1,21 @@
-import logo from './logo.svg';
-import './App.css';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+    <div className="main-wrapper">
+      <header>
+
       </header>
+      <div className="ui raised very padded text container segment">
+      <div class="ui relaxed divided list">
+        <div class="item">
+          <i class="large github middle aligned icon"></i>
+          <div class="content">
+            <a class="header">Semantic-Org/Semantic-UI</a>
+            <div class="description">Updated 10 mins ago</div>
+          </div>
+        </div>
+      </div>
+      </div>
     </div>
   );
 }
