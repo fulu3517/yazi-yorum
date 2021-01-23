@@ -14,6 +14,6 @@ const YaziDetay = (props) => {
     <h2 className="ui header">{yaziDetayi.title}</h2>
     <p>{yaziDetayi.created_at}</p>
     <p>{yaziDetayi.content}</p>
-    </> 
+    </>   
 }
 export default YaziDetay;
