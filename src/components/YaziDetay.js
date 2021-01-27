@@ -26,7 +26,6 @@ const YaziDetay = (props) => {
         <p>{yaziDetayi.content}</p>
         {yorumlar.map((yorum) => {
             
-            
             return (
                 <div>
                     <div>
