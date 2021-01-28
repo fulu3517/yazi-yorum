@@ -11,7 +11,6 @@ const YaziListesi = () => {
     });
   }, []);
 
-  console.log('ya<i',yaziListesi)
     return  yaziListesi.map(yazi => {
         return ( 
             <div className="item" key={yazi.id}>

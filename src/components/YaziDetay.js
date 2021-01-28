@@ -1,18 +1,14 @@
 import React, {useEffect, useState} from 'react'
 import axios from 'axios';
 import YaziYorumlari from './YaziYorumlari';
-import YorumFormu from './YorumFormu';
-const YORUM_BASLANGIC = {
-    display_name: "",
-    body: ""
-}
+
 const YaziDetay = (props) => {
     const {id} = props.match.params;
     const [yaziDetayi, setYaziDetayi] = useState({});
     const [yorumlar, setYorumlar] = useState([]);
-    const [yorum, setYorum] = useState(YORUM_BASLANGIC)
+    // const [yorum, setYorum] = useState(YORUM_BASLANGIC)
 
-    const handleCommentSubmit = (e)  => {
+    const handleCommentSubmit = (e, yorum)  => {
         e.preventDefault();
         axios
         .post(`https://react-yazi-yorum.herokuapp.com/posts/${id}/comments`, 
@@ -20,14 +16,6 @@ const YaziDetay = (props) => {
         )
         .then((response) => {
                 setYorumlar([...yorumlar, response.data]); // önceki yorumları kaybetmemek için ...yorumları koyduktan sonra yeni datayı ekledik
-                setYorum(YORUM_BASLANGIC)
-        })
-    }
-
-    const handleOnChange = event => {
-        setYorum({
-            ...yorum,
-            [event.target.name] : event.target.value // inputlara name veriyoruz ve o inputun eventına göre statei güncelliyoruz
         })
     }
 
@@ -47,8 +35,7 @@ const YaziDetay = (props) => {
         <h2 className="ui header">{yaziDetayi.title}</h2>
         <p>{yaziDetayi.created_at}</p>
         <p>{yaziDetayi.content}</p>
-        <YaziYorumlari yorumlar={yorumlar}/>
-        <YorumFormu/>
+        <YaziYorumlari yorumlar={yorumlar} handleSubmit={handleCommentSubmit}/>
        
     </>
 }
