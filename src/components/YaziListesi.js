@@ -1,17 +1,24 @@
 import React, {useEffect, useState} from 'react';
-import axios from 'axios';
+import{api} from '../api' 
 import {Link} from 'react-router-dom'
 
 const YaziListesi = () => {
   const [yaziListesi, setYaziListesi] = useState([]);
   useEffect(() => {
-    axios.get('https://react-yazi-yorum.herokuapp.com/posts')
+    api().get("/posts")
     .then(response => {
       setYaziListesi(response.data)
     });
   }, []);
 
-    return  yaziListesi.map(yazi => {
+    return (
+      <>
+      <Link to={`/yazi-ekle`}>
+      <button class="big ui button" >
+        Yazı Ekle
+      </button>
+      </Link>
+    {yaziListesi.map(yazi => {
         return ( 
             <div className="item" key={yazi.id}>
              <i className="large github middle aligned icon"></i>
@@ -21,7 +28,9 @@ const YaziListesi = () => {
              </div>
            </div>
          )
-    });
+    })}
+    </>
+    )
 }
 
 export default YaziListesi

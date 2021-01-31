@@ -1,4 +1,5 @@
 import React, {useEffect, useState} from 'react'
+import{api} from '../api' 
 import axios from 'axios';
 import YaziYorumlari from './YaziYorumlari';
 
@@ -10,8 +11,8 @@ const YaziDetay = (props) => {
 
     const handleCommentSubmit = (e, yorum)  => {
         e.preventDefault();
-        axios
-        .post(`https://react-yazi-yorum.herokuapp.com/posts/${id}/comments`, 
+       api()
+        .post(`/posts/${id}/comments`, 
             yorum
         )
         .then((response) => {
