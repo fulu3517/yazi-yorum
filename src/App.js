@@ -3,6 +3,7 @@ import {BrowserRouter as Router, Route} from 'react-router-dom';
 import YaziListesi from './components/YaziListesi';
 import YaziDetay from './components/YaziDetay';
 import YaziEkle from "./components/YaziEkle";
+import YaziDuzenle from "./components/YaziDuzenle";
 
 function App() {
 
@@ -14,8 +15,9 @@ function App() {
         </header>
         <div className="ui raised very padded text container segment">
           <Route exact path="/" component={YaziListesi}/>
-          <Route path="/post/:id" component={YaziDetay}/>
+          <Route exact path="/post/:id" component={YaziDetay}/>
           <Route path="/yazi-ekle" component={YaziEkle}/>
+          <Route path="/posts/:id/edit" component={YaziDuzenle}/>
         </div>
       </div>
     </Router>

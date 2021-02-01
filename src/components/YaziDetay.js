@@ -2,6 +2,7 @@ import React, {useEffect, useState} from 'react'
 import{api} from '../api' 
 import axios from 'axios';
 import YaziYorumlari from './YaziYorumlari';
+import {Link} from 'react-router-dom'
 
 const YaziDetay = (props) => {
     const {id} = props.match.params;
@@ -35,6 +36,11 @@ const YaziDetay = (props) => {
     return <>
         <h2 className="ui header">{yaziDetayi.title}</h2>
         <p>{yaziDetayi.created_at}</p>
+        <div className="ui buttons">
+            <button className="ui button">Sil</button>
+            <div className="or"></div>
+            <Link to={`/posts/${yaziDetayi.id}/edit`} className="ui positive button">Düzenle</Link>
+        </div>
         <p>{yaziDetayi.content}</p>
         <YaziYorumlari yorumlar={yorumlar} handleSubmit={handleCommentSubmit}/>
        

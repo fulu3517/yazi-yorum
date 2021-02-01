@@ -14,7 +14,7 @@ const YaziListesi = () => {
     return (
       <>
       <Link to={`/yazi-ekle`}>
-      <button class="big ui button" >
+      <button className="big ui button" >
         Yazı Ekle
       </button>
       </Link>
