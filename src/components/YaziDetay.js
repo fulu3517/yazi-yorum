@@ -2,6 +2,7 @@ import React, {useEffect, useState} from 'react'
 import{api} from '../api' 
 import axios from 'axios';
 import YaziYorumlari from './YaziYorumlari';
+import SilModal from './SilModal';
 import {Link} from 'react-router-dom'
 
 const YaziDetay = (props) => {
@@ -37,7 +38,8 @@ const YaziDetay = (props) => {
         <h2 className="ui header">{yaziDetayi.title}</h2>
         <p>{yaziDetayi.created_at}</p>
         <div className="ui buttons">
-            <button className="ui button">Sil</button>
+            {/* <button className="ui button">Sil</button> */}
+            <SilModal yazi={yaziDetayi} push={props.history.push}/>
             <div className="or"></div>
             <Link to={`/posts/${yaziDetayi.id}/edit`} className="ui positive button">Düzenle</Link>
         </div>

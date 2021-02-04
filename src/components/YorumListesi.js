@@ -4,7 +4,7 @@ import React from 'react'
     return (
         <>
         <h3>Yorumlar</h3>
-        {props.yorumlar.map((yorum) => {
+        {props.yorumlar?.map((yorum) => {
             return (
                 <div key={yorum.id}>
                     <div>
