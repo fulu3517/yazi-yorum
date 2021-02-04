@@ -23,17 +23,16 @@ const YaziDetay = (props) => {
     }
 
     useEffect(() => {
-        axios.all([ // aynı anda iki tane get i yaptık. Bu şekilde toplayabilir ve tek bir then altında state i set edebiliriz
-            axios.get(`https://react-yazi-yorum.herokuapp.com/posts/${id}`),
-            axios.get(`https://react-yazi-yorum.herokuapp.com/posts/${id}/comments`)
-        ]).then(responses => {
-            console.log("responses",responses)
-            setYaziDetayi(responses[0].data) // yazılardan ve yorumlardan gelen dataları ayırdık
-            setYorumlar(responses[1].data)
-        }).catch(error=> {
-            console.log(error)
-        })
-    },[]);
+        axios
+          .all([api().get(`/posts/${id}`), api().get(`/posts/${id}/comments`)])// aynı anda iki tane get i yaptık. Bu şekilde toplayabilir ve tek bir then altında state i set edebiliriz
+          .then((responses) => {
+            setYaziDetayi(responses[0].data);// yazılardan ve yorumlardan gelen dataları ayırdık
+            setYorumlar(responses[1].data);
+          })
+          .catch((error) => {
+            console.log(error);
+          });
+      }, []);
     return <>
         <h2 className="ui header">{yaziDetayi.title}</h2>
         <p>{yaziDetayi.created_at}</p>
