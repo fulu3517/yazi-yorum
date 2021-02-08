@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react';
-import {withRouter} from 'react-router-dom';
+import { useParams, useHistory} from 'react-router-dom';
 import{api} from '../api' 
 
 
@@ -10,6 +10,9 @@ const YaziFormu = (props) => {
   }
   const [yazi, setYazi] = useState(YAZI_BASLANGIC);
   const [hata, setHata] = useState("");
+
+  const {id} = useParams();
+  const history = useHistory(); // history destruction olarak kullanmadık. sebebini araştır
 
   const onInputChange= (event) => {
           setYazi({
@@ -22,20 +25,21 @@ const YaziFormu = (props) => {
       setHata("");
       if(props.yazi) {
           api()
-          .put(`/posts/${props.match.params.id}`, yazi)
+          .put(`/posts/${id}`, yazi)//props.match.params.id yerine id yazdık
           .then(response => {
-            props.history.push(`/post/${props.match.params.id}`)
+            history.push(`/post/${id}`)//props.match.params.id yerine id yazdık // props.history olan yerlere history yazdık
           }).catch((error) => {
-            setHata("Başlık ve Yazı içeriği zorunludur")
+            setHata("Başlık ve Yazı içeriği zorunludur 1")
         }).catch((error) => {
-          setHata("Başlık ve Yazı içeriği zorunludur")
+          setHata("Başlık ve Yazı içeriği zorunludur 2")
       });;
       } else {
         api().post("/posts", yazi)
         .then(response => {
-            props.history.push('/');
+            history.push('/');//props.history olan yerlere history yazdık
         }).catch((error) => {
-            setHata("Başlık ve Yazı içeriği zorunludur")
+          console.log('his', history);
+            setHata("Başlık ve Yazı içeriği zorunludur 3")
         });
       }
      
@@ -78,4 +82,5 @@ const YaziFormu = (props) => {
 // Yazı formuna yazı ekledikten sonra anasayfaya yönlendirmek istiyoruz
 // Yazı formu bizim routlarımızda olmadığı için history.push metodunu kullanamıyoruz
 // withRouter ile HOC yaptık ve history.pushu yazıformu componentine eklemiş olduk
-export default withRouter(YaziFormu) 
+// export default withRouter(YaziFormu) // reactrouterhooksları kullandığımız için HOC yapmaya gerek yok
+export default YaziFormu

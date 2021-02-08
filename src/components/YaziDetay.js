@@ -3,13 +3,17 @@ import{api} from '../api'
 import axios from 'axios';
 import YaziYorumlari from './YaziYorumlari';
 import SilModal from './SilModal';
-import {Link} from 'react-router-dom'
+import {Link, useParams, useHistory} from 'react-router-dom'
 
-const YaziDetay = (props) => {
-    const {id} = props.match.params;
+const YaziDetay = () => {
+    const {id} = useParams();//pprops.match.params yerine kullanduk // usePAramsı react routerdom da import ederiz
     const [yaziDetayi, setYaziDetayi] = useState({});
     const [yorumlar, setYorumlar] = useState([]);
     // const [yorum, setYorum] = useState(YORUM_BASLANGIC)
+    const history = useHistory() // şu anda history kullandığımız yerde props.history kullanıyorduk. artık props kullanmaya gerek kalmadı
+
+    const params = useParams();
+    console.log('test', params);
 
     const handleCommentSubmit = (e, yorum)  => {
         e.preventDefault();
@@ -38,7 +42,7 @@ const YaziDetay = (props) => {
         <p>{yaziDetayi.created_at}</p>
         <div className="ui buttons">
             {/* <button className="ui button">Sil</button> */}
-            <SilModal yazi={yaziDetayi} push={props.history.push}/>
+            <SilModal yazi={yaziDetayi} push={history.push}/>
             <div className="or"></div>
             <Link to={`/posts/${yaziDetayi.id}/edit`} className="ui positive button">Düzenle</Link>
         </div>
