@@ -42,7 +42,10 @@ const YaziFormu = (props) => {
             setHata("Başlık ve Yazı içeriği zorunludur 3")
         });
       }
-     
+  }
+  
+  const goHomePage = () => {
+    history.push('/');
   }
 
   useEffect(() => {
@@ -72,8 +75,8 @@ const YaziFormu = (props) => {
           <button className="ui primary button" onClick={onFormSubmit}>
             Gönder
           </button>
-          <button className="ui button">
-            İptal Et
+          <button className="ui button" onClick={goHomePage}>
+            Anasayfa
           </button>
     </div>
     </>

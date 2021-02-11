@@ -9,7 +9,6 @@ const YaziDetay = () => {
     const {id} = useParams();//pprops.match.params yerine kullanduk // usePAramsı react routerdom da import ederiz
     const [yaziDetayi, setYaziDetayi] = useState({});
     const [yorumlar, setYorumlar] = useState([]);
-    // const [yorum, setYorum] = useState(YORUM_BASLANGIC)
     const history = useHistory() // şu anda history kullandığımız yerde props.history kullanıyorduk. artık props kullanmaya gerek kalmadı
 
     const params = useParams();

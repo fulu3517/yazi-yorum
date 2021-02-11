@@ -1,14 +1,18 @@
-import React, {useEffect, useState} from 'react';
-import{api} from '../api' 
+import React, {useEffect} from 'react';
+// import{api} from '../api' 
 import {Link} from 'react-router-dom'
+import { useSelector, useDispatch } from 'react-redux';
+import { yaziListesiGetir } from '../actions';
 
 const YaziListesi = () => {
-  const [yaziListesi, setYaziListesi] = useState([]);
+
+  const yaziListesi = useSelector((state) => state.yaziListesi);/// redux connect ve mapStateToProps yerine useSelectoru kullandık. UseSelector, state i alıyor state.yaziListesi döndürür ve değişkene atar
+  const dispatch = useDispatch(); // Dispatch fonksiyonu sayesinde actions içinde oluşturulan yaziListesiGetir fonksiyonunu getirir.
+
+
   useEffect(() => {
-    api().get("/posts")
-    .then(response => {
-      setYaziListesi(response.data)
-    });
+    dispatch(yaziListesiGetir()) // Burda fonksiyonu çağırıyıyoruz. Callback yapmıyoruz, çağırıyoruz
+    
   }, []);
 
     return (
